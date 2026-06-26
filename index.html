@@ -14,257 +14,138 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="styles.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="refresh" content="0; url=batman/index.html" />
+	<title>Sudhanshu Tomar Portfolio</title>
+	<meta name="description" content="Redirecting to Sudhanshu Tomar's 3D portfolio experience." />
+	<style>
+		:root {
+			color-scheme: dark;
+			--bg: #07070b;
+			--surface: rgba(255, 255, 255, 0.06);
+			--text: #f5f7fb;
+			--muted: #9aa3b2;
+			--accent: #ffd700;
+			--accent-2: #ffa500;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html, body {
+			height: 100%;
+		}
+
+		body {
+			margin: 0;
+			font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+			background:
+				radial-gradient(circle at top, rgba(255, 215, 0, 0.16), transparent 34%),
+				linear-gradient(180deg, #0b0b12 0%, #050507 100%);
+			color: var(--text);
+			display: grid;
+			place-items: center;
+			padding: 24px;
+		}
+
+		.panel {
+			width: min(560px, 100%);
+			padding: 32px;
+			border-radius: 28px;
+			background: var(--surface);
+			border: 1px solid rgba(255, 255, 255, 0.12);
+			backdrop-filter: blur(18px);
+			box-shadow: 0 30px 90px -40px rgba(0, 0, 0, 0.8);
+			text-align: center;
+		}
+
+		.kicker {
+			margin: 0 0 10px;
+			text-transform: uppercase;
+			letter-spacing: 0.26em;
+			font-size: 0.78rem;
+			color: var(--muted);
+		}
+
+		h1 {
+			margin: 0;
+			font-size: clamp(2.2rem, 6vw, 3.8rem);
+			line-height: 1;
+			background: linear-gradient(135deg, var(--accent), var(--accent-2));
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+
+		p {
+			margin: 14px 0 0;
+			color: var(--muted);
+			line-height: 1.7;
+		}
+
+		.actions {
+			display: flex;
+			gap: 12px;
+			justify-content: center;
+			flex-wrap: wrap;
+			margin-top: 24px;
+		}
+
+		a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 170px;
+			padding: 12px 18px;
+			border-radius: 999px;
+			text-decoration: none;
+			font-weight: 700;
+			transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+		}
+
+		.primary {
+			color: #120d00;
+			background: linear-gradient(135deg, var(--accent), var(--accent-2));
+			box-shadow: 0 14px 30px -18px rgba(255, 215, 0, 0.8);
+		}
+
+		.secondary {
+			color: var(--text);
+			background: rgba(255, 255, 255, 0.05);
+			border: 1px solid rgba(255, 255, 255, 0.12);
+		}
+
+		a:hover {
+			transform: translateY(-2px);
+		}
+
+		.fineprint {
+			margin-top: 18px;
+			font-size: 0.9rem;
+		}
+	</style>
 </head>
 <body>
-	<!-- 3D Animated Background -->
-	<div class="bg-animation">
-		<div class="floating-shape shape-1"></div>
-		<div class="floating-shape shape-2"></div>
-		<div class="floating-shape shape-3"></div>
-		<div class="floating-shape shape-4"></div>
-		<div class="floating-shape shape-5"></div>
-	</div>
-	<canvas id="particleCanvas"></canvas>
-	
-	<header class="site-header">
-		<div class="container nav">
-			<a href="#home" class="logo" aria-label="Home"></a>
-			<nav class="nav-links" aria-label="Primary">
-				<a href="#about">About</a>
-				<a href="#skills">Skills</a>
-				<a href="#projects">Projects</a>
-				<a href="#experience">Experience</a>
-				<a href="#contact">Contact</a>
-			</nav>
-			<button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode" title="Toggle theme">
-				<i class="fa-solid fa-moon"></i>
-			</button>
+	<main class="panel" role="main" aria-label="Redirect to 3D portfolio">
+		<p class="kicker">3D Portfolio Ready</p>
+		<h1>Opening the 3D site</h1>
+		<p>Your portfolio now points to the new 3D experience in the <strong>batman</strong> folder.</p>
+		<div class="actions">
+			<a class="primary" href="batman/index.html">Enter 3D Website</a>
+			<a class="secondary" href="batman/index.html">Open Directly</a>
 		</div>
-	</header>
-
-	<main id="home">
-		<section class="hero container reveal">
-			<div class="hero-text">
-				<h1>Hi, I'm <span class="accent">SUDHANSHU TOMAR</span></h1>
-				<p class="subtitle">Third-year Computer Science student passionate about building clean, efficient, and user-centric software.</p>
-				<div class="cta">
-					<a class="btn primary" href="#projects">View Projects</a>
-					<a class="btn ghost" href="#contact">Contact Me</a>
-				</div>
-				<div class="social">
-					<a href="https://github.com/" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-					<a href="https://www.linkedin.com/in/sudhanshu-tomar-3b922b312?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-					<a href="mailto:stomar532006@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-					<a href="tel:7632072850" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
-				</div>
-			</div>
-			<div class="hero-art" aria-hidden="true">
-				<div class="portrait-shell">
-					<div class="portrait-glow"></div>
-					<div class="portrait-frame">
-						<img src="WhatsApp Image 2026-06-26 at 2.24.31 PM.jpeg" alt="Sudhanshu Tomar portrait" class="portrait-image" />
-					</div>
-					<div class="portrait-badge badge-top">Computer Science Student</div>
-					<div class="portrait-badge badge-bottom">Building with code and curiosity</div>
-				</div>
-			</div>
-		</section>
-
-		<section id="connect" class="section container reveal">
-			<h2>Connect</h2>
-			<p>Let’s connect on LinkedIn for opportunities, collaborations, and networking.</p>
-			<div class="card" style="max-width:560px">
-				<div class="card-body">
-					<h3>LinkedIn</h3>
-					<p class="meta">Profile: Sudhanshu Tomar</p>
-					<div class="card-actions">
-						<a class="btn primary" target="_blank" rel="noopener" href="https://www.linkedin.com/in/sudhanshu-tomar-3b922b312?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">Visit LinkedIn</a>
-						<a class="btn primary" target="_blank" rel="noopener" href="https://github.com/sunnyy2006-prog">View GitHub</a>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section id="about" class="section container reveal">
-			<h2>About Me</h2>
-			<p>
-				I'm a third-year CSE student focused on full‑stack web development and problem solving. I enjoy crafting modern interfaces and scalable backends, and I'm actively exploring AI/ML. I thrive on learning by building.
-			</p>
-		</section>
-
-		<section id="skills" class="section container reveal">
-			<h2>Skills</h2>
-			<ul class="chip-grid" aria-label="Skills list">
-				<li class="chip">C</li>
-				<li class="chip">C++</li>
-				<li class="chip">HTML</li>
-				<li class="chip">React</li>
-				<li class="chip">Python</li>
-				<li class="chip">Android development</li>
-				<li class="chip">Web development</li>
-			</ul>
-		</section>
-
-		<section id="projects" class="section container reveal">
-			<h2>Projects</h2>
-			<div class="cards">
-				<article class="card">
-					<div class="card-media placeholder"></div>
-					<div class="card-body">
-						<h3>AI-Powered Disaster Response Navigator</h3>
-						<p>Emergency disaster response system with AI chatbot powered by OpenAI GPT, real-time location services, smart mock responses for offline mode, and MongoDB integration for data storage.</p>
-						<div class="tags">
-							<span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>OpenAI API</span><span>PWA</span>
-						</div>
-						<div class="card-actions">
-							<a class="btn small" href="SIH-india2025-main/SIH-india2025-main/index.html" target="_blank" rel="noopener">View Project</a>
-							<a class="btn small ghost" href="https://github.com/sunnyy2006-prog" target="_blank" rel="noopener">Code</a>
-						</div>
-					</div>
-				</article>
-				<article class="card">
-					<div class="card-media placeholder"></div>
-					<div class="card-body">
-						<h3>Voice Changer</h3>
-						<p>An interactive voice changer application that allows users to modify their voice in real-time with various effects and filters, providing an engaging audio transformation experience.</p>
-						<div class="tags">
-							<span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Web Audio API</span>
-						</div>
-						<div class="card-actions">
-							<a class="btn small" href="voice changer/index.html" target="_blank" rel="noopener">View Project</a>
-							<a class="btn small ghost" href="https://github.com/sunnyy2006-prog" target="_blank" rel="noopener">Code</a>
-						</div>
-					</div>
-				</article>
-				<article class="card">
-					<div class="card-media placeholder"></div>
-					<div class="card-body">
-						<h3>Project Three</h3>
-						<p>🚧 Work in Progress - Something exciting with drones is coming soon...</p>
-						<div class="tags">
-							<span>Python</span><span>Computer Vision</span><span>AI/ML</span><span>OpenCV</span>
-						</div>
-						<div class="card-actions">
-							<a class="btn small" href="#" target="_blank" rel="noopener">Coming Soon</a>
-							<a class="btn small ghost" href="https://github.com/sunnyy2006-prog" target="_blank" rel="noopener">Code</a>
-						</div>
-					</div>
-				</article>
-			</div>
-		</section>
-
-		<section id="experience" class="section container reveal">
-			<h2>Experience</h2>
-			<div class="timeline">
-				<div class="timeline-item">
-					<div class="dot"></div>
-					<div class="content">
-						<h3>🚀 Ready to Make an Impact</h3>
-						<p class="meta">Actively Seeking Opportunities</p>
-						<p>Eager to apply my technical skills and knowledge in a dynamic environment. Currently looking for internship and entry-level opportunities where I can contribute, learn, and grow as a developer. Let's build something amazing together!</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section id="certifications" class="section container reveal">
-			<h2>Certifications</h2>
-			<div class="timeline">
-				<div class="timeline-item">
-					<div class="dot"></div>
-					<div class="content">
-						<h3>Data Structures & Algorithms with C++ and Python</h3>
-						<p class="meta">PW Skills • Completed 2025</p>
-						<p>Completed comprehensive certification in Data Structures & Algorithms using C++ and Python from PW Skills, mastering problem-solving techniques, algorithmic thinking, and hands-on coding challenges.</p>
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="dot"></div>
-					<div class="content">
-						<h3>Data Structures & Algorithms with C</h3>
-						<p class="meta">GeeksforGeeks • Completed 2025</p>
-						<p>Completed certification in C programming with Data Structures & Algorithms from GeeksforGeeks, mastering core programming concepts and algorithmic problem-solving.</p>
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="dot"></div>
-					<div class="content">
-						<h3>Workshop on DSA & Website Development</h3>
-						<p class="meta">GeeksforGeeks • Completed 2025</p>
-						<p>Successfully completed workshop at GeeksforGeeks on Data Structures & Algorithms and Website Development, gaining hands-on experience in problem-solving and web technologies.</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section id="hackathons" class="section container reveal">
-			<h2>Hackathons</h2>
-			<div class="timeline">
-				<div class="timeline-item">
-					<div class="dot"></div>
-					<div class="content">
-						<h3>HackIndia</h3>
-						<p class="meta">2025 • First Hackathon</p>
-						<p>Participated in HackIndia, my first hackathon experience, working on innovative solutions and collaborating with team members to develop a project.</p>
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="dot"></div>
-					<div class="content">
-						<h3>College Level Hackathons</h3>
-						<p class="meta">2025 • Multiple Events</p>
-						<p>Actively participated in many local college hackathons, collaborating with diverse teams, building innovative projects, and enhancing problem-solving skills through competitive coding challenges.</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section id="contact" class="section container reveal">
-			<h2>Contact</h2>
-			<form id="contactForm" class="contact-form" action="https://formspree.io/f/xdkwrrdg" method="POST">
-				<div class="grid">
-					<label>
-						<span>Name</span>
-						<input type="text" name="name" placeholder="Your name" required />
-					</label>
-					<label>
-						<span>Email</span>
-						<input type="email" name="email" placeholder="your.email@example.com" required />
-					</label>
-				</div>
-				<label>
-					<span>Phone Number</span>
-					<input type="tel" name="phone" placeholder="+91 1234567890" />
-				</label>
-				<label>
-					<span>Message</span>
-					<textarea name="message" rows="5" placeholder="How can I help?" required></textarea>
-				</label>
-				<div class="form-actions">
-					<button type="submit" class="btn primary">Send</button>
-					<a href="mailto:stomar532006@gmail.com" class="btn ghost">Email</a>
-					<a href="tel:7632072850" class="btn ghost">Call</a>
-				</div>
-				<p id="formStatus" role="status" aria-live="polite" class="form-status" hidden></p>
-			</form>
-		</section>
+		<p class="fineprint">If your browser does not redirect automatically, use the button above.</p>
 	</main>
-
-
-
-	<footer class="site-footer">
-		<div class="container footer-content">
-			<p>© <span id="year"></span> SUDHANSHU TOMAR. All rights reserved.</p>
-			<div class="social">
-				<a href="https://github.com/" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-				<a href="https://www.linkedin.com/in/sudhanshu-tomar-3b922b312?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-				<a href="mailto:stomar532006@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-				<a href="tel:7632072850" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
-			</div>
-		</div>
-	</footer>
-
-	<script src="script.js"></script>
+	<script>
+		window.location.replace('batman/index.html');
+	</script>
 </body>
 </html>
+							<a class="btn small ghost" href="https://github.com/sunnyy2006-prog" target="_blank" rel="noopener">Code</a>
 
+						</div>

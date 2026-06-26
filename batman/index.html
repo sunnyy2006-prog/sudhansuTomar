@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudhanshu Tomar 3D Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', monospace;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.4) 100%);
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+            pointer-events: auto;
+        }
+
+        .hero {
+            text-align: center;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .bat-symbol {
+            width: 150px;
+            height: 80px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            clip-path: polygon(
+                10% 20%, 20% 10%, 30% 15%, 40% 10%, 50% 15%, 
+                60% 10%, 70% 15%, 80% 10%, 90% 20%, 95% 40%,
+                85% 50%, 75% 45%, 65% 50%, 50% 40%, 35% 50%,
+                25% 45%, 15% 50%, 5% 40%
+            );
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        h1 {
+            font-size: 4em;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: #888;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 100;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            padding: 12px 25px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Orbitron', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-btn:hover:before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+
+        .skill-card {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #FFD700, transparent, #FFA500);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .skill-card:hover:before {
+            opacity: 1;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .skill-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 0, 0, 0.5));
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            padding: 30px;
+            transition: all 0.4s;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .contact-link {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #FFD700;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .contact-link:hover {
+            background: #FFD700;
+            color: #000;
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bat-signal {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #FFD700 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: signal 3s infinite;
+            z-index: 100;
+        }
+
+        @keyframes signal {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 1s;
+        }
+
+        .loader {
+            width: 100px;
+            height: 100px;
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            border-top-color: #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            .nav-menu { flex-direction: column; gap: 10px; }
+            .nav-btn { padding: 8px 15px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen" id="loader">
+        <div class="loader"></div>
+    </div>
+
+    <div id="canvas-container"></div>
+    <div class="overlay"></div>
+    
+    <nav class="nav-menu">
+        <button class="nav-btn" onclick="scrollToSection('home')">Home</button>
+        <button class="nav-btn" onclick="scrollToSection('skills')">Skills</button>
+        <button class="nav-btn" onclick="scrollToSection('projects')">Projects</button>
+        <button class="nav-btn" onclick="scrollToSection('contact')">Contact</button>
+    </nav>
+
+    <div class="content">
+        <section id="home" class="section hero">
+            <div>
+                <div class="bat-symbol"></div>
+                <h1>Sudhanshu Tomar</h1>
+                <p class="subtitle">Third-year Computer Science student</p>
+                <p style="color: #888; max-width: 600px; margin: 0 auto; line-height: 1.8;">
+                    Full Stack Developer | AI/ML Explorer<br>
+                    "It's not who I am underneath, but what I do that defines me"
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div style="width: 100%; max-width: 1200px;">
+                <h2 style="text-align: center; font-size: 3em; margin-bottom: 50px; color: #FFD700;">Technical Arsenal</h2>
+                <div class="skills-container">
+                    <div class="skill-card">
+                        <div class="skill-icon">🔧</div>
+                        <h3>C / C++</h3>
+                        <p style="color: #888;">DSA, Competitive Programming</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">⚡</div>
+                        <h3>Web Development</h3>
+                        <p style="color: #888;">HTML, CSS, JavaScript, React</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🎯</div>
+                        <h3>Python</h3>
+                        <p style="color: #888;">Automation, ML, problem solving</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🗄️</div>
+                        <h3>Database</h3>
+                        <p style="color: #888;">MongoDB, SQL</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">☁️</div>
+                        <h3>Android Development</h3>
+                        <p style="color: #888;">Mobile app interfaces and UX</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🎨</div>
+                        <h3>3D / UI Design</h3>
+                        <p style="color: #888;">Three.js, motion, immersive layouts</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div style="width: 100%; max-width: 1200px;">
+                <h2 style="text-align: center; font-size: 3em; margin-bottom: 50px; color: #FFD700;">Mission Logs</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3 style="color: #FFD700; margin-bottom: 15px;">AI-Powered Disaster Response Navigator</h3>
+                        <p style="color: #888; line-height: 1.6;">Emergency response platform with AI chatbot, live location support, offline mock responses, and MongoDB storage.</p>
+                        <div style="margin-top: 20px;">
+                            <span style="color: #FFD700; font-size: 12px;">HTML • CSS • JS • NODE • MONGODB</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3 style="color: #FFD700; margin-bottom: 15px;">Voice Changer</h3>
+                        <p style="color: #888; line-height: 1.6;">An interactive audio tool that modifies voice in real time with effects and filters using the Web Audio API.</p>
+                        <div style="margin-top: 20px;">
+                            <span style="color: #FFD700; font-size: 12px;">HTML • CSS • JAVASCRIPT</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3 style="color: #FFD700; margin-bottom: 15px;">3D Portfolio Experience</h3>
+                        <p style="color: #888; line-height: 1.6;">Immersive personal portfolio concept built to showcase skills, projects, and contact details with a cinematic 3D feel.</p>
+                        <div style="margin-top: 20px;">
+                            <span style="color: #FFD700; font-size: 12px;">THREE.JS • UI • MOTION</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <div>
+                <h2 style="font-size: 3em; margin-bottom: 30px; color: #FFD700;">Signal Me</h2>
+                <p style="color: #888; margin-bottom: 40px;">Let's work together to build something memorable</p>
+                <div class="contact-links">
+                    <a href="mailto:stomar532006@gmail.com" class="contact-link">📧</a>
+                    <a href="https://www.linkedin.com/in/sudhanshu-tomar-3b922b312?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="contact-link" target="_blank" rel="noopener">💼</a>
+                    <a href="https://github.com/sunnyy2006-prog" class="contact-link" target="_blank" rel="noopener">🐦</a>
+                    <a href="tel:7632072850" class="contact-link">📱</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="bat-signal"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Three.js Scene Setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xFFD700, 0.2);
+        scene.add(ambientLight);
+
+        const pointLight = new THREE.PointLight(0xFFD700, 1, 100);
+        pointLight.position.set(10, 10, 10);
+        scene.add(pointLight);
+
+        // Create Bat Symbol
+        const batGroup = new THREE.Group();
+        
+        // Bat wings using multiple geometries
+        const wingGeometry = new THREE.ConeGeometry(2, 4, 4);
+        const wingMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0xFFD700,
+            emissive: 0xFFD700,
+            emissiveIntensity: 0.2,
+            wireframe: true
+        });
+        
+        const leftWing = new THREE.Mesh(wingGeometry, wingMaterial);
+        leftWing.rotation.z = -Math.PI / 4;
+        leftWing.position.x = -2;
+        batGroup.add(leftWing);
+        
+        const rightWing = new THREE.Mesh(wingGeometry, wingMaterial);
+        rightWing.rotation.z = Math.PI / 4;
+        rightWing.position.x = 2;
+        batGroup.add(rightWing);
+        
+        // Bat body
+        const bodyGeometry = new THREE.BoxGeometry(1, 3, 0.5);
+        const bodyMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0xFFD700,
+            emissive: 0xFFD700,
+            emissiveIntensity: 0.3
+        });
+        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+        batGroup.add(body);
+        
+        scene.add(batGroup);
+        batGroup.position.z = -10;
+
+        // Particle System
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 1000;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 50;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.05,
+            color: 0xFFD700,
+            transparent: true,
+            opacity: 0.6
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // Create floating cubes
+        const cubes = [];
+        const cubeGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+        
+        for(let i = 0; i < 10; i++) {
+            const cubeMaterial = new THREE.MeshPhongMaterial({
+                color: 0xFFD700,
+                emissive: 0xFFA500,
+                emissiveIntensity: 0.1,
+                wireframe: Math.random() > 0.5
+            });
+            const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+            cube.position.x = (Math.random() - 0.5) * 20;
+            cube.position.y = (Math.random() - 0.5) * 20;
+            cube.position.z = (Math.random() - 0.5) * 20;
+            scene.add(cube);
+            cubes.push(cube);
+        }
+
+        camera.position.z = 5;
+
+        // Mouse tracking
+        const mouse = { x: 0, y: 0 };
+        document.addEventListener('mousemove', (event) => {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Scroll tracking
+        let scrollY = 0;
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+        });
+
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate bat symbol
+            batGroup.rotation.y += 0.005;
+            batGroup.rotation.x = Math.sin(Date.now() * 0.001) * 0.1;
+            
+            // Animate particles
+            particlesMesh.rotation.y += 0.001;
+            particlesMesh.rotation.x += 0.0005;
+            
+            // Animate cubes
+            cubes.forEach((cube, index) => {
+                cube.rotation.x += 0.01 * (index + 1) * 0.1;
+                cube.rotation.y += 0.01 * (index + 1) * 0.1;
+                cube.position.y = Math.sin(Date.now() * 0.001 + index) * 0.5 + cube.position.y * 0.99;
+            });
+
+            // Camera movement based on mouse
+            camera.position.x = mouse.x * 2;
+            camera.position.y = mouse.y * 2;
+            camera.lookAt(scene.position);
+
+            // Parallax effect with scroll
+            batGroup.position.y = scrollY * 0.002;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Window resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Smooth scroll
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Hide loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 1000);
+            }, 1500);
+        });
+
+        // Add interactive glow effect
+        document.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.style.position = 'fixed';
+            ripple.style.left = e.clientX + 'px';
+            ripple.style.top = e.clientY + 'px';
+            ripple.style.width = '10px';
+            ripple.style.height = '10px';
+            ripple.style.background = 'radial-gradient(circle, #FFD700, transparent)';
+            ripple.style.borderRadius = '50%';
+            ripple.style.transform = 'translate(-50%, -50%)';
+            ripple.style.pointerEvents = 'none';
+            ripple.style.zIndex = '9999';
+            ripple.style.animation = 'rippleEffect 1s ease-out';
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 1000);
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rippleEffect {
+                to {
+                    width: 200px;
+                    height: 200px;
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
