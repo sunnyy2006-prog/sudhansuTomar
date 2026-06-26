@@ -199,14 +199,11 @@ body::before{
 .social a{color:var(--muted);font-size:1.2rem;transition:all .3s ease;display:inline-block}
 .social a:hover{color:var(--accent);transform:translateY(-5px) rotate(360deg) scale(1.2);filter:drop-shadow(0 5px 10px var(--accent))}
 
-.hero-art{position:relative;min-height:320px;perspective:1000px}
-.big-hero-image{position:relative;width:100%;height:100%;max-height:520px;object-fit:cover;border-radius:18px;border:1px solid rgba(255,255,255,.08);box-shadow:0 24px 60px -30px var(--ring);animation:floatImage 6s ease-in-out infinite;transform-style:preserve-3d;transition:transform .3s ease}
-.big-hero-image:hover{transform:rotateY(5deg) rotateX(5deg) scale(1.05);box-shadow:0 30px 80px -20px var(--accent)}
-
-@keyframes floatImage{
-	0%,100%{transform:translateY(0) rotateY(0)}
-	50%{transform:translateY(-20px) rotateY(3deg)}
-}
+.hero-art{position:relative;min-height:320px;display:flex;align-items:center;justify-content:center}
+.profile-card{width:min(100%,380px);padding:28px;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 60px -30px var(--ring);backdrop-filter:blur(10px);text-align:left}
+.profile-mark{width:72px;height:72px;border-radius:20px;display:grid;place-items:center;margin-bottom:18px;font-size:1.4rem;font-weight:800;letter-spacing:.08em;color:#031018;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 10px 30px -12px var(--ring)}
+.profile-label{margin:0 0 6px;font-size:.85rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted)}
+.profile-copy{margin:0;color:var(--text);font-size:1.05rem;max-width:28ch}
 
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @keyframes scrollGrid{0%{transform:translateY(0)}100%{transform:translateY(50%)}}
