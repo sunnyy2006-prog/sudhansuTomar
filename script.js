@@ -57,10 +57,12 @@
 		}
 		
 		draw(){
-			const scale = 1000 / (1000 - this.z);
+			const depth = Math.max(1, 1000 - this.z);
+			const scale = 1000 / depth;
 			const x2d = (this.x - canvas.width / 2) * scale + canvas.width / 2;
 			const y2d = (this.y - canvas.height / 2) * scale + canvas.height / 2;
 			const size2d = this.size * scale;
+			if(!Number.isFinite(size2d) || size2d <= 0) return;
 			
 			ctx.beginPath();
 			ctx.arc(x2d, y2d, size2d, 0, Math.PI * 2);
@@ -129,19 +131,9 @@
 	}
 })();
 
-// Parallax effect for hero image
+// Mouse move 3D effect
+
 (function(){
-	const heroImage = document.querySelector('.big-hero-image');
-	if(!heroImage) return;
-	
-	window.addEventListener('scroll', ()=>{
-		const scrolled = window.pageYOffset;
-		if(scrolled < 800){
-			heroImage.style.transform = `translateY(${scrolled * 0.3}px) rotateY(${scrolled * 0.02}deg)`;
-		}
-	});
-	
-	// Mouse move 3D effect
 	document.addEventListener('mousemove', (e)=>{
 		const cards = document.querySelectorAll('.card');
 		cards.forEach(card=>{
