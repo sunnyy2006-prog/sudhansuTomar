@@ -130,7 +130,7 @@
             box-shadow: 0 0 14px #FFD700;
         }
 
-        .bat-symbol {
+        .hero-symbol {
             width: 150px;
             height: 80px;
             margin: 0 auto 30px;
@@ -383,7 +383,7 @@
             }
         }
 
-        .bat-signal {
+        .signal-orb {
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -473,7 +473,7 @@
         <section id="home" class="section hero">
             <div class="hero-layout">
                 <div class="hero-copy">
-                <div class="bat-symbol"></div>
+                <div class="hero-symbol"></div>
                 <h1>Sudhanshu Tomar</h1>
                 <p class="subtitle">Third-year Computer Science student</p>
                 <p style="color: #888; max-width: 600px; margin: 0 auto; line-height: 1.8;">
@@ -553,8 +553,8 @@
                     </div>
                     <div class="skill-card">
                         <div class="skill-icon">🎨</div>
-                        <h3>3D / UI Design</h3>
-                        <p style="color: #888;">Three.js, motion, immersive layouts</p>
+                        <h3>UI Design</h3>
+                        <p style="color: #888;">Motion, immersive layouts</p>
                     </div>
                 </div>
             </div>
@@ -579,10 +579,10 @@
                         </div>
                     </div>
                     <div class="project-card">
-                        <h3 style="color: #FFD700; margin-bottom: 15px;">3D Portfolio Experience</h3>
-                        <p style="color: #888; line-height: 1.6;">Immersive personal portfolio concept built to showcase skills, projects, and contact details with a cinematic 3D feel.</p>
+                        <h3 style="color: #FFD700; margin-bottom: 15px;">Portfolio Experience</h3>
+                        <p style="color: #888; line-height: 1.6;">Personal portfolio concept built to showcase skills, projects, and contact details with a polished visual feel.</p>
                         <div style="margin-top: 20px;">
-                            <span style="color: #FFD700; font-size: 12px;">THREE.JS • UI • MOTION</span>
+                            <span style="color: #FFD700; font-size: 12px;">UI • MOTION • INTERACTION</span>
                         </div>
                     </div>
                 </div>
@@ -679,11 +679,11 @@
         </section>
     </div>
 
-    <div class="bat-signal"></div>
+    <div class="signal-orb"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Three.js Scene Setup
+        // Scene Setup
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -699,10 +699,10 @@
         pointLight.position.set(10, 10, 10);
         scene.add(pointLight);
 
-        // Create Bat Symbol
-        const batGroup = new THREE.Group();
+        // Create centerpiece symbol
+        const symbolGroup = new THREE.Group();
         
-        // Bat wings using multiple geometries
+        // Wings using multiple geometries
         const wingGeometry = new THREE.ConeGeometry(2, 4, 4);
         const wingMaterial = new THREE.MeshPhongMaterial({ 
             color: 0xFFD700,
@@ -714,14 +714,14 @@
         const leftWing = new THREE.Mesh(wingGeometry, wingMaterial);
         leftWing.rotation.z = -Math.PI / 4;
         leftWing.position.x = -2;
-        batGroup.add(leftWing);
+        symbolGroup.add(leftWing);
         
         const rightWing = new THREE.Mesh(wingGeometry, wingMaterial);
         rightWing.rotation.z = Math.PI / 4;
         rightWing.position.x = 2;
-        batGroup.add(rightWing);
+        symbolGroup.add(rightWing);
         
-        // Bat body
+        // Center body
         const bodyGeometry = new THREE.BoxGeometry(1, 3, 0.5);
         const bodyMaterial = new THREE.MeshPhongMaterial({ 
             color: 0xFFD700,
@@ -729,10 +729,10 @@
             emissiveIntensity: 0.3
         });
         const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
-        batGroup.add(body);
+        symbolGroup.add(body);
         
-        scene.add(batGroup);
-        batGroup.position.z = -10;
+        scene.add(symbolGroup);
+        symbolGroup.position.z = -10;
 
         // Particle System
         const particlesGeometry = new THREE.BufferGeometry();
@@ -792,9 +792,9 @@
         function animate() {
             requestAnimationFrame(animate);
 
-            // Rotate bat symbol
-            batGroup.rotation.y += 0.005;
-            batGroup.rotation.x = Math.sin(Date.now() * 0.001) * 0.1;
+            // Rotate centerpiece symbol
+            symbolGroup.rotation.y += 0.005;
+            symbolGroup.rotation.x = Math.sin(Date.now() * 0.001) * 0.1;
             
             // Animate particles
             particlesMesh.rotation.y += 0.001;
@@ -813,7 +813,7 @@
             camera.lookAt(scene.position);
 
             // Parallax effect with scroll
-            batGroup.position.y = scrollY * 0.002;
+            symbolGroup.position.y = scrollY * 0.002;
 
             renderer.render(scene, camera);
         }
