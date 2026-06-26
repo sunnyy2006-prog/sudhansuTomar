@@ -160,6 +160,8 @@
             z-index: 100;
             display: flex;
             gap: 20px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .nav-btn {
@@ -264,6 +266,64 @@
         .project-card:hover {
             transform: translateY(-15px) rotateX(5deg);
             box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1100px;
+            margin: 50px auto 0;
+            padding-left: 24px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(#FFD700, rgba(255, 215, 0, 0.1));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 28px;
+            padding-left: 28px;
+        }
+
+        .timeline-item .dot {
+            position: absolute;
+            left: -7px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #FFD700;
+            box-shadow: 0 0 0 6px rgba(255, 215, 0, 0.12);
+        }
+
+        .timeline-item .content {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.18);
+            border-radius: 22px;
+            padding: 24px;
+            backdrop-filter: blur(8px);
+        }
+
+        .timeline-item .meta {
+            color: #FFD700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 8px 0 12px;
+        }
+
+        .section-copy {
+            color: #888;
+            max-width: 760px;
+            margin: 0 auto;
+            line-height: 1.8;
+            text-align: center;
         }
 
         .contact-section {
@@ -371,8 +431,12 @@
     
     <nav class="nav-menu">
         <button class="nav-btn" onclick="scrollToSection('home')">Home</button>
+        <button class="nav-btn" onclick="scrollToSection('about')">About</button>
         <button class="nav-btn" onclick="scrollToSection('skills')">Skills</button>
         <button class="nav-btn" onclick="scrollToSection('projects')">Projects</button>
+        <button class="nav-btn" onclick="scrollToSection('experience')">Experience</button>
+        <button class="nav-btn" onclick="scrollToSection('certifications')">Certifications</button>
+        <button class="nav-btn" onclick="scrollToSection('hackathons')">Hackathons</button>
         <button class="nav-btn" onclick="scrollToSection('contact')">Contact</button>
     </nav>
 
@@ -390,6 +454,40 @@
                     Full Stack Developer | AI/ML Explorer<br>
                     "It's not who I am underneath, but what I do that defines me"
                 </p>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div style="width: 100%; max-width: 1100px; text-align: center;">
+                <h2 style="font-size: 3em; margin-bottom: 30px; color: #FFD700;">About Me</h2>
+                <p class="section-copy">
+                    I'm a third-year CSE student focused on full-stack web development and problem solving. I enjoy crafting modern interfaces and scalable backends, and I'm actively exploring AI/ML. I thrive on learning by building.
+                </p>
+            </div>
+        </section>
+
+        <section id="connect" class="section">
+            <div style="width: 100%; max-width: 1100px; text-align: center;">
+                <h2 style="font-size: 3em; margin-bottom: 30px; color: #FFD700;">Connect</h2>
+                <p class="section-copy">
+                    Let’s connect on LinkedIn for opportunities, collaborations, and networking.
+                </p>
+                <div class="project-grid" style="margin-top: 34px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+                    <div class="project-card">
+                        <h3 style="color: #FFD700; margin-bottom: 15px;">LinkedIn</h3>
+                        <p style="color: #888; line-height: 1.6;">Profile: Sudhanshu Tomar</p>
+                        <div style="margin-top: 20px;">
+                            <a class="nav-btn" style="display:inline-block; text-decoration:none;" href="https://www.linkedin.com/in/sudhanshu-tomar-3b922b312?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener">Visit LinkedIn</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3 style="color: #FFD700; margin-bottom: 15px;">GitHub</h3>
+                        <p style="color: #888; line-height: 1.6;">Explore my projects, experiments, and code.</p>
+                        <div style="margin-top: 20px;">
+                            <a class="nav-btn" style="display:inline-block; text-decoration:none;" href="https://github.com/sunnyy2006-prog" target="_blank" rel="noopener">View GitHub</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -460,6 +558,79 @@
             </div>
         </section>
 
+        <section id="experience" class="section">
+            <div style="width: 100%; max-width: 1200px;">
+                <h2 style="text-align: center; font-size: 3em; margin-bottom: 10px; color: #FFD700;">Experience</h2>
+                <p class="section-copy">Actively seeking opportunities where I can contribute, learn, and grow as a developer.</p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="dot"></div>
+                        <div class="content">
+                            <h3 style="color: #FFD700;">🚀 Ready to Make an Impact</h3>
+                            <p class="meta">Actively Seeking Opportunities</p>
+                            <p style="color: #888; line-height: 1.8;">Eager to apply my technical skills and knowledge in a dynamic environment. Currently looking for internship and entry-level opportunities where I can contribute, learn, and grow as a developer. Let's build something amazing together!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="section">
+            <div style="width: 100%; max-width: 1200px;">
+                <h2 style="text-align: center; font-size: 3em; margin-bottom: 10px; color: #FFD700;">Certifications</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="dot"></div>
+                        <div class="content">
+                            <h3 style="color: #FFD700;">Data Structures & Algorithms with C++ and Python</h3>
+                            <p class="meta">PW Skills • Completed 2025</p>
+                            <p style="color: #888; line-height: 1.8;">Completed comprehensive certification in Data Structures & Algorithms using C++ and Python from PW Skills, mastering problem-solving techniques, algorithmic thinking, and hands-on coding challenges.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="dot"></div>
+                        <div class="content">
+                            <h3 style="color: #FFD700;">Data Structures & Algorithms with C</h3>
+                            <p class="meta">GeeksforGeeks • Completed 2025</p>
+                            <p style="color: #888; line-height: 1.8;">Completed certification in C programming with Data Structures & Algorithms from GeeksforGeeks, mastering core programming concepts and algorithmic problem-solving.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="dot"></div>
+                        <div class="content">
+                            <h3 style="color: #FFD700;">Workshop on DSA & Website Development</h3>
+                            <p class="meta">GeeksforGeeks • Completed 2025</p>
+                            <p style="color: #888; line-height: 1.8;">Successfully completed workshop at GeeksforGeeks on Data Structures & Algorithms and Website Development, gaining hands-on experience in problem-solving and web technologies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hackathons" class="section">
+            <div style="width: 100%; max-width: 1200px;">
+                <h2 style="text-align: center; font-size: 3em; margin-bottom: 10px; color: #FFD700;">Hackathons</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="dot"></div>
+                        <div class="content">
+                            <h3 style="color: #FFD700;">HackIndia</h3>
+                            <p class="meta">2025 • First Hackathon</p>
+                            <p style="color: #888; line-height: 1.8;">Participated in HackIndia, my first hackathon experience, working on innovative solutions and collaborating with team members to develop a project.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="dot"></div>
+                        <div class="content">
+                            <h3 style="color: #FFD700;">College Level Hackathons</h3>
+                            <p class="meta">2025 • Multiple Events</p>
+                            <p style="color: #888; line-height: 1.8;">Actively participated in many local college hackathons, collaborating with diverse teams, building innovative projects, and enhancing problem-solving skills through competitive coding challenges.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="contact" class="section contact-section">
             <div>
                 <h2 style="font-size: 3em; margin-bottom: 30px; color: #FFD700;">Signal Me</h2>
@@ -469,6 +640,9 @@
                     <a href="https://www.linkedin.com/in/sudhanshu-tomar-3b922b312?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="contact-link" target="_blank" rel="noopener">💼</a>
                     <a href="https://github.com/sunnyy2006-prog" class="contact-link" target="_blank" rel="noopener">🐦</a>
                     <a href="tel:7632072850" class="contact-link">📱</a>
+                </div>
+                <div style="margin-top: 28px; color: #888; line-height: 1.8;">
+                    Email: stomar532006@gmail.com • Phone: 7632072850
                 </div>
             </div>
         </section>
