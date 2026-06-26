@@ -199,11 +199,16 @@ body::before{
 .social a{color:var(--muted);font-size:1.2rem;transition:all .3s ease;display:inline-block}
 .social a:hover{color:var(--accent);transform:translateY(-5px) rotate(360deg) scale(1.2);filter:drop-shadow(0 5px 10px var(--accent))}
 
-.hero-art{position:relative;min-height:320px;display:flex;align-items:center;justify-content:center}
-.profile-card{width:min(100%,380px);padding:28px;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 60px -30px var(--ring);backdrop-filter:blur(10px);text-align:left}
-.profile-mark{width:72px;height:72px;border-radius:20px;display:grid;place-items:center;margin-bottom:18px;font-size:1.4rem;font-weight:800;letter-spacing:.08em;color:#031018;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 10px 30px -12px var(--ring)}
-.profile-label{margin:0 0 6px;font-size:.85rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted)}
-.profile-copy{margin:0;color:var(--text);font-size:1.05rem;max-width:28ch}
+.hero-art{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center;perspective:1200px}
+.portrait-shell{position:relative;width:min(100%,430px);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center}
+.portrait-glow{position:absolute;inset:10% 8%;border-radius:32px;background:radial-gradient(circle at 30% 30%,rgba(110,231,255,.45),transparent 45%),radial-gradient(circle at 70% 70%,rgba(139,92,246,.32),transparent 46%);filter:blur(40px);opacity:.9;transform:scale(1.05)}
+.portrait-frame{position:relative;width:100%;height:100%;padding:14px;border-radius:32px;background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 80px -35px rgba(0,0,0,.55);backdrop-filter:blur(10px);transform:rotateY(-8deg) rotateX(4deg);transition:transform .35s ease,box-shadow .35s ease}
+.portrait-frame::before{content:"";position:absolute;inset:14px;border-radius:24px;border:1px solid rgba(255,255,255,.08);pointer-events:none}
+.portrait-frame:hover{transform:rotateY(0) rotateX(0) translateY(-6px);box-shadow:0 40px 90px -30px var(--ring)}
+.portrait-image{display:block;width:100%;height:100%;object-fit:cover;border-radius:24px;filter:saturate(1.03) contrast(1.03)}
+.portrait-badge{position:absolute;padding:10px 14px;border-radius:999px;background:rgba(8,12,20,.58);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(14px);color:var(--text);font-size:.82rem;font-weight:600;letter-spacing:.04em;box-shadow:0 16px 40px -28px rgba(0,0,0,.65)}
+.badge-top{top:18px;left:-12px}
+.badge-bottom{right:-8px;bottom:18px}
 
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @keyframes scrollGrid{0%{transform:translateY(0)}100%{transform:translateY(50%)}}
@@ -282,8 +287,9 @@ body::before{
 /* Responsive */
 @media (max-width: 900px){
 	.hero{grid-template-columns:1fr}
-	.hero-art{min-height:260px}
+	.hero-art{min-height:360px}
 	.cards{grid-template-columns:1fr 1fr}
+	.portrait-shell{width:min(100%,380px)}
 }
 
 @media (max-width: 620px){
@@ -291,5 +297,9 @@ body::before{
 	.nav-links{display:none}
 	.cards{grid-template-columns:1fr}
 	.contact-form .grid{grid-template-columns:1fr}
+	.hero-art{min-height:320px}
+	.portrait-shell{width:min(100%,320px)}
+	.badge-top{left:0;top:10px}
+	.badge-bottom{right:0;bottom:10px}
 }
 
