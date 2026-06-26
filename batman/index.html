@@ -55,13 +55,27 @@
         }
 
         .hero {
-            text-align: center;
+            width: 100%;
             animation: fadeInUp 1.5s ease;
         }
 
+        .hero-layout {
+            width: min(1200px, 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+        }
+
+        .hero-copy {
+            flex: 1 1 0;
+            text-align: left;
+            max-width: 640px;
+        }
+
         .hero-portrait {
-            width: min(260px, 72vw);
-            margin: 0 auto 28px;
+            width: min(320px, 38vw);
+            margin-left: auto;
             position: relative;
             padding: 14px;
             border-radius: 34px;
@@ -136,9 +150,9 @@
         }
 
         h1 {
-            font-size: 4em;
+            font-size: clamp(4.4rem, 6vw, 6rem);
             text-transform: uppercase;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             margin-bottom: 10px;
             background: linear-gradient(135deg, #FFD700, #FFA500);
             -webkit-background-clip: text;
@@ -415,7 +429,21 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.5em; }
+            .hero-layout {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-copy {
+                text-align: center;
+            }
+
+            .hero-portrait {
+                width: min(260px, 78vw);
+                margin: 0 auto;
+            }
+
+            h1 { font-size: 2.9em; }
             .nav-menu { flex-direction: column; gap: 10px; }
             .nav-btn { padding: 8px 15px; font-size: 12px; }
         }
@@ -442,11 +470,8 @@
 
     <div class="content">
         <section id="home" class="section hero">
-            <div>
-                <div class="hero-portrait">
-                    <img src="../WhatsApp Image 2026-06-26 at 2.24.31 PM.jpeg" alt="Sudhanshu Tomar portrait">
-                    <div class="portrait-caption">Sudhanshu Tomar</div>
-                </div>
+            <div class="hero-layout">
+                <div class="hero-copy">
                 <div class="bat-symbol"></div>
                 <h1>Sudhanshu Tomar</h1>
                 <p class="subtitle">Third-year Computer Science student</p>
@@ -454,6 +479,11 @@
                     Full Stack Developer | AI/ML Explorer<br>
                     "It's not who I am underneath, but what I do that defines me"
                 </p>
+                </div>
+                <div class="hero-portrait">
+                    <img src="../WhatsApp Image 2026-06-26 at 2.24.31 PM.jpeg" alt="Sudhanshu Tomar portrait">
+                    <div class="portrait-caption">Sudhanshu Tomar</div>
+                </div>
             </div>
         </section>
 
