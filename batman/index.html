@@ -834,6 +834,12 @@
 
         // Hide loader
         window.addEventListener('load', () => {
+            try {
+                history.replaceState(null, '', '../');
+            } catch (error) {
+                // Ignore if the environment does not allow URL rewriting.
+            }
+
             setTimeout(() => {
                 const loader = document.getElementById('loader');
                 loader.style.opacity = '0';
